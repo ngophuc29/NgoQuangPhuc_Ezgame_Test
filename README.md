@@ -2,9 +2,11 @@
 
 > An independent bookshop website built as part of the EZ Games Frontend Developer Intern Technical Test.
 
+---
+
 ## 🌐 Live Preview
 
-Open `index.html` in any modern browser — no build step needed.
+Open `index.html` in any modern browser — no installation required.
 
 ---
 
@@ -13,15 +15,15 @@ Open `index.html` in any modern browser — no build step needed.
 ```
 NgoQuangPhuc_Ezgame_Test/
 ├── index.html          # Homepage (Hero, Browse by Genre, Featured, Bestsellers, New Arrivals)
-├── shop.html           # All Books / Shop page (filter + sort)
+├── shop.html           # Shop page (filter + sort)
 ├── book.html           # Book Detail page (dynamic via ?id=)
 ├── css/
 │   └── style.css       # Full design system — pure CSS (Flexbox + Grid, responsive)
 ├── js/
-│   ├── data.js         # Shared book data + utility functions (bag, wishlist, toast, nav)
-│   ├── main.js         # Homepage: carousel, book grid rendering
-│   ├── shop.js         # Shop: genre filter, sort, URL params
-│   └── book-detail.js  # Book detail: dynamic render, add to bag, wishlist
+│   ├── data.js         # Shared book data + utilities (bag, wishlist, toast, nav)
+│   ├── main.js         # Homepage logic (carousel, rendering)
+│   ├── shop.js         # Filtering, sorting, URL params
+│   └── book-detail.js  # Book detail rendering
 └── README.md
 ```
 
@@ -29,90 +31,82 @@ NgoQuangPhuc_Ezgame_Test/
 
 ## ✅ Requirements Coverage
 
-| Requirement | Status |
-|---|---|
-| Semantic HTML structure | ✅ `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<footer>`, `<dl>` |
-| Reusable components | ✅ Shared header/footer HTML, `createBookCard()` JS function, shared CSS classes |
-| Pure CSS layout (Flexbox + Grid) | ✅ No CSS frameworks used |
-| Responsive design | ✅ Breakpoints: 1024px, 768px, 480px |
-| JavaScript interactions | ✅ Carousel, filter, sort, bag, wishlist, search, toast |
-| Pixel-accurate UI | ✅ Matches reference design screens |
+| Requirement             | Status                                                                |
+| ----------------------- | --------------------------------------------------------------------- |
+| Semantic HTML structure | ✅ `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>` |
+| Reusable components     | ✅ Shared layout + reusable JS rendering                               |
+| Pure CSS layout         | ✅ Flexbox & Grid, no frameworks                                       |
+| Responsive design       | ✅ Mobile-first approach                                               |
+| JavaScript interactions | ✅ Carousel, filter, search, bag, wishlist                             |
+| Pixel-accurate UI       | ✅ Matches provided design                                             |
 
 ---
 
 ## 🎨 Design System
 
-- **Background**: `#e8e2d6` (warm cream)
-- **Headings**: Playfair Display (serif)
-- **Body**: Inter (sans-serif)
-- **Accent**: `#8b2a2a` (deep red), `#c4861a` (gold)
-- **Dark**: `#1e1b18`
+* **Background**: `#e8e2d6`
+* **Headings**: Playfair Display
+* **Body**: Inter
+* **Accent**: `#8b2a2a`, `#c4861a`
+* **Dark**: `#1e1b18`
 
 ---
 
 ## 🛠 Features
 
 ### Homepage
-- **Hero Carousel** — 3 slides with auto-play (5s), arrow buttons, dot nav, swipe support
-- **Browse by Genre** — 6 coloured genre cards linking to filtered shop
-- **Featured This Month** — Editor's picks (5 books)
-- **Free Shipping Banner** — Dark green promo block
-- **Bestsellers** — 4 bestselling titles
-- **New Arrivals** — 4 newest titles
 
-### Shop Page (`shop.html`)
-- Filter tabs: All / Fiction / Mystery / Sci-Fi / Non-fiction / Poetry / Children / Biography
-- Sort: Featured / Price Low→High / Price High→Low / Top Rated / Newest
-- URL param support: `?genre=Fiction`, `?sort=new`, `?sort=bestseller`
-- Animated grid transition on filter/sort change
-- Dynamic subtitle showing count
+* Hero carousel (auto-play, navigation, swipe)
+* Browse by genre
+* Featured books
+* Bestsellers & New arrivals
 
-### Book Detail Page (`book.html?id=N`)
-- Dynamic rendering from `?id=` URL parameter
-- Full book info: cover, title, author, rating, price, description
-- Specification grid: Format, Pages, Published, Publisher, Language, ISBN
-- "Add to bag" → opens bag sidebar
-- "Wishlist" toggle (persisted via localStorage)
-- "You may also like" section — same-genre recommendations
+### Shop Page
+
+* Genre filtering
+* Sorting options
+* URL parameter support
+* Dynamic rendering
+
+### Book Detail Page
+
+* Dynamic content via `?id=`
+* Add to bag & wishlist
+* Related books suggestions
 
 ### Global Features
-- **Sticky header** with scroll shadow
-- **Search** — live search overlay with results
-- **Shopping bag sidebar** — add/remove items, quantity, total
-- **Toast notifications** — "Added to bag", "Wishlisted" etc.
-- **Newsletter form** — footer email signup
-- **Mobile hamburger menu** — full navigation on mobile
-- **LocalStorage persistence** — bag and wishlist survive page refresh
+
+* Sticky header
+* Search overlay
+* Shopping bag sidebar
+* Toast notifications
+* Mobile navigation
+* LocalStorage persistence
 
 ---
 
 ## 🚀 How to Run
 
-1. Clone or download the repository
-2. Open `index.html` in a browser (Chrome / Firefox / Safari / Edge)
-3. No server required — all assets are local
+1. Download or clone the project
+2. Open `index.html` in a browser
 
-```bash
-# Or use a simple local server:
-npx serve .
-# Then open http://localhost:3000
-```
+> No server, no build step, no dependencies required.
 
 ---
 
 ## 📱 Responsive Breakpoints
 
-| Breakpoint | Layout |
-|---|---|
-| > 1024px | Full desktop — 5-column book grids |
-| ≤ 1024px | Tablet — 3-column grids, 2-column footer |
-| ≤ 768px | Mobile — 2-column grids, hamburger menu |
-| ≤ 480px | Small mobile — 2-column grids, search hidden |
+| Breakpoint | Layout       |
+| ---------- | ------------ |
+| > 1024px   | Desktop      |
+| ≤ 1024px   | Tablet       |
+| ≤ 768px    | Mobile       |
+| ≤ 480px    | Small mobile |
 
 ---
 
 ## 👨‍💻 Author
 
-**Ngo Quang Phuc**  
-Frontend Developer Intern — EZ Games Technical Test  
-Completed: June 2025
+**Ngo Quang Phuc**
+Frontend Developer Intern — EZ Games Technical Test
+Completed: June 2026
