@@ -14,16 +14,20 @@ Open `index.html` in any modern browser — no installation required.
 
 ```
 NgoQuangPhuc_Ezgame_Test/
-├── index.html          # Homepage (Hero, Browse by Genre, Featured, Bestsellers, New Arrivals)
+├── index.html          # Homepage (Hero, Genre, Featured, Bestsellers, New Arrivals)
 ├── shop.html           # Shop page (filter + sort)
 ├── book.html           # Book Detail page (dynamic via ?id=)
+├── checkout.html       # Checkout / Bag page (cart + order summary)
 ├── css/
-│   └── style.css       # Full design system — pure CSS (Flexbox + Grid, responsive)
+│   ├── style.css       # Global design system — pure CSS (Flexbox + Grid, responsive)
+│   └── checkout.css    # Checkout page + Login modal styles
 ├── js/
 │   ├── data.js         # Shared book data + utilities (bag, wishlist, toast, nav)
 │   ├── main.js         # Homepage logic (carousel, rendering)
 │   ├── shop.js         # Filtering, sorting, URL params
-│   └── book-detail.js  # Book detail rendering
+│   ├── book-detail.js  # Book detail rendering
+│   ├── checkout.js     # Cart management, order summary, order confirmation
+│   └── modal.js        # Login/Register modal (shared across pages)
 └── README.md
 ```
 
@@ -45,7 +49,6 @@ NgoQuangPhuc_Ezgame_Test/
 ## 🎨 Design System
 
 * **Background**: `#e8e2d6`
-* **Headings**: Playfair Display
 * **Body**: Inter
 * **Accent**: `#8b2a2a`, `#c4861a`
 * **Dark**: `#1e1b18`
