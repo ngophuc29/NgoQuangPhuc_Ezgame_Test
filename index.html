@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pages & Co. – An Independent Bookshop</title>
+  <meta name="description" content="Pages & Co. is an independent bookshop for readers who like to take their time. Discover fiction, mystery, children's books and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="site-header" id="site-header">
+    <nav class="nav-container">
+      <a href="index.html" class="logo" aria-label="Pages & Co. Home">
+        <div class="logo-icon">P</div>
+        <span class="logo-text">Pages &amp; Co.</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="shop.html" class="nav-link">Shop All</a></li>
+        <li><a href="shop.html?genre=Fiction" class="nav-link">Fiction</a></li>
+        <li><a href="shop.html?genre=Mystery" class="nav-link">Mystery</a></li>
+        <li><a href="shop.html?genre=Children" class="nav-link">Children</a></li>
+        <li><a href="shop.html?genre=Poetry" class="nav-link">Poetry</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="search-wrapper">
+          <svg class="search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M13 13l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input type="search" id="search-input" class="search-input" placeholder="Search titles, authors..." aria-label="Search books" />
+        </div>
+        <button class="btn-signin" id="btn-signin">Sign in</button>
+        <button class="bag-btn" id="bag-btn" aria-label="Shopping bag, 0 items">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span class="bag-label">Bag</span>
+          <span class="bag-count" id="bag-count">0</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== SEARCH RESULTS OVERLAY ===== -->
+  <div class="search-overlay" id="search-overlay" role="dialog" aria-label="Search results" hidden>
+    <div class="search-results" id="search-results"></div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ===== HERO CAROUSEL ===== -->
+    <section class="hero-section" aria-label="Featured collections">
+      <div class="carousel" id="hero-carousel">
+        <div class="carousel-track" id="carousel-track">
+
+          <!-- Slide 1 -->
+          <article class="carousel-slide slide-1" aria-label="Staff Favourites">
+            <div class="slide-content">
+              <p class="slide-eyebrow">Staff Favourites</p>
+              <h1 class="slide-title">The shelves we keep coming back to</h1>
+              <p class="slide-desc">Our booksellers pick the titles they can't stop pressing into customers' hands.</p>
+              <a href="shop.html" class="btn-gold">Browse bestsellers</a>
+            </div>
+          </article>
+
+          <!-- Slide 2 -->
+          <article class="carousel-slide slide-2" aria-label="New Arrivals">
+            <div class="slide-content">
+              <p class="slide-eyebrow">Hot Off the Press</p>
+              <h1 class="slide-title">Fresh reads just landed in store</h1>
+              <p class="slide-desc">Brand-new titles from debut authors and established voices alike — explore what's new this month.</p>
+              <a href="shop.html?sort=new" class="btn-gold">See new arrivals</a>
+            </div>
+          </article>
+
+          <!-- Slide 3 -->
+          <article class="carousel-slide slide-3" aria-label="Reading Room">
+            <div class="slide-content">
+              <p class="slide-eyebrow">The Reading Room</p>
+              <h1 class="slide-title">Free shipping on every order over $35</h1>
+              <p class="slide-desc">Join our reading room and get a personalised recommendation in your inbox each week.</p>
+              <a href="#newsletter" class="btn-gold">Join free</a>
+            </div>
+          </article>
+
+        </div>
+
+        <button class="carousel-btn carousel-btn--prev" id="carousel-prev" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="carousel-btn carousel-btn--next" id="carousel-next" aria-label="Next slide">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Carousel navigation">
+          <button class="dot dot--active" data-index="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+          <button class="dot" data-index="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+          <button class="dot" data-index="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BROWSE BY GENRE ===== -->
+    <section class="genre-section" aria-labelledby="genre-heading">
+      <div class="container">
+        <p class="section-eyebrow">Find Your Shelf</p>
+        <h2 class="section-title" id="genre-heading">Browse by genre</h2>
+        <div class="genre-grid" role="list">
+          <a href="shop.html?genre=Fiction" class="genre-card genre-fiction" role="listitem">
+            <span class="genre-name">Fiction</span>
+            <span class="genre-count">3 titles</span>
+          </a>
+          <a href="shop.html?genre=Mystery" class="genre-card genre-mystery" role="listitem">
+            <span class="genre-name">Mystery</span>
+            <span class="genre-count">2 titles</span>
+          </a>
+          <a href="shop.html?genre=Sci-Fi" class="genre-card genre-scifi" role="listitem">
+            <span class="genre-name">Sci-Fi</span>
+            <span class="genre-count">2 titles</span>
+          </a>
+          <a href="shop.html?genre=Poetry" class="genre-card genre-poetry" role="listitem">
+            <span class="genre-name">Poetry</span>
+            <span class="genre-count">2 titles</span>
+          </a>
+          <a href="shop.html?genre=Children" class="genre-card genre-children" role="listitem">
+            <span class="genre-name">Children</span>
+            <span class="genre-count">2 titles</span>
+          </a>
+          <a href="shop.html?genre=Non-fiction" class="genre-card genre-nonfiction" role="listitem">
+            <span class="genre-name">Non-fiction</span>
+            <span class="genre-count">2 titles</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED THIS MONTH ===== -->
+    <section class="books-section" aria-labelledby="featured-heading">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-eyebrow">Editor's Picks</p>
+            <h2 class="section-title" id="featured-heading">Featured this month</h2>
+          </div>
+          <a href="shop.html" class="view-all-link">View all →</a>
+        </div>
+        <div class="books-grid books-grid--5" id="featured-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FREE SHIPPING BANNER ===== -->
+    <section class="promo-banner" aria-label="Reading Room promotion">
+      <div class="container promo-inner">
+        <div class="promo-text">
+          <p class="promo-eyebrow">The Reading Room</p>
+          <h2 class="promo-title">Free shipping on every order over $35</h2>
+          <p class="promo-desc">Plus 15% off your first month and a weekly recommendation picked just for you.</p>
+        </div>
+        <a href="#newsletter" class="btn-gold">Join free</a>
+      </div>
+    </section>
+
+    <!-- ===== BESTSELLERS ===== -->
+    <section class="books-section" aria-labelledby="bestsellers-heading">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-eyebrow">Most Loved</p>
+            <h2 class="section-title" id="bestsellers-heading">Bestsellers</h2>
+          </div>
+          <a href="shop.html?sort=bestseller" class="view-all-link">View all →</a>
+        </div>
+        <div class="books-grid books-grid--4" id="bestsellers-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NEW ARRIVALS ===== -->
+    <section class="books-section" aria-labelledby="new-arrivals-heading">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-eyebrow">Hot Off the Press</p>
+            <h2 class="section-title" id="new-arrivals-heading">New arrivals</h2>
+          </div>
+          <a href="shop.html?sort=new" class="view-all-link">View all →</a>
+        </div>
+        <div class="books-grid books-grid--4" id="new-arrivals-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" id="newsletter">
+    <div class="footer-top">
+      <div class="container footer-grid">
+
+        <div class="footer-brand">
+          <a href="index.html" class="logo logo--light" aria-label="Pages & Co. Home">
+            <div class="logo-icon">P</div>
+            <span class="logo-text">Pages &amp; Co.</span>
+          </a>
+          <p class="footer-tagline">An independent bookshop for readers who like to take their time. Open since 1998.</p>
+          <div class="social-links" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="#" class="social-link" aria-label="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Shop</h3>
+          <ul class="footer-links">
+            <li><a href="shop.html?sort=new">New arrivals</a></li>
+            <li><a href="shop.html?sort=bestseller">Bestsellers</a></li>
+            <li><a href="shop.html?genre=Fiction">Fiction</a></li>
+            <li><a href="shop.html?genre=Children">Children</a></li>
+            <li><a href="#">Gift cards</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">About</h3>
+          <ul class="footer-links">
+            <li><a href="#">Our story</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Visit the shop</a></li>
+            <li><a href="#">Journal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Help</h3>
+          <ul class="footer-links">
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h3 class="footer-col-title footer-col-title--gold">The Reading Room</h3>
+          <p class="footer-newsletter-text">One handpicked recommendation in your inbox each week.</p>
+          <form class="newsletter-form" id="newsletter-form" novalidate>
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Email address" required />
+            <button type="submit" class="btn-newsletter">Join</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2025 Pages &amp; Co. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+        <p>Free shipping on orders over $35</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== BAG SIDEBAR ===== -->
+  <aside class="bag-sidebar" id="bag-sidebar" aria-label="Shopping bag" hidden>
+    <div class="bag-header">
+      <h2>Your bag</h2>
+      <button class="bag-close" id="bag-close" aria-label="Close bag">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="bag-items" id="bag-items">
+      <p class="bag-empty">Your bag is empty.</p>
+    </div>
+    <div class="bag-footer" id="bag-footer" hidden>
+      <div class="bag-total">
+        <span>Total</span>
+        <span id="bag-total-price">$0.00</span>
+      </div>
+      <button class="btn-checkout">Checkout</button>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay" hidden></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
