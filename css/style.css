@@ -858,7 +858,7 @@ ul { list-style: none; }
    FOOTER
    ============================================================ */
 .site-footer {
-  background: var(--dark);
+  background: #2f2414;
   color: rgba(255,255,255,0.8);
   margin-top: 40px;
 }
