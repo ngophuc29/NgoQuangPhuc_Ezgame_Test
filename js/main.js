@@ -83,7 +83,7 @@ function initBestsellersBooks() {
   const grid = document.getElementById('bestsellers-grid');
   if (!grid) return;
 
-  const bestsellers = BOOKS.filter(b => b.isBestseller).slice(0, 4);
+  const bestsellers = BOOKS.filter(b => b.isBestseller).slice(0, 5);
   grid.innerHTML = bestsellers.map((b, i) => createBookCard(b, i * 60)).join('');
 }
 
@@ -97,8 +97,8 @@ function initNewArrivalsBooks() {
   // Also add some bestsellers to fill the grid
   const combined = [
     ...newBooks,
-    ...BOOKS.filter(b => !b.isNew && b.isBestseller).slice(0, 4 - newBooks.length),
-  ].slice(0, 4);
+    ...BOOKS.filter(b => !b.isNew && b.isBestseller).slice(0, 5 - newBooks.length),
+  ].slice(0, 5);
 
   grid.innerHTML = combined.map((b, i) => createBookCard(b, i * 60)).join('');
 }

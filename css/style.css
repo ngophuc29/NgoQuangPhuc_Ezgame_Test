@@ -177,6 +177,7 @@ ul { list-style: none; }
 
 .logo--light .logo-icon { background: var(--gold); }
 .logo--light .logo-text { color: #fff; }
+.logo--header .logo-icon { background: var(--red-accent); }
 
 /* Nav Links */
 .nav-links {
@@ -370,6 +371,8 @@ ul { list-style: none; }
    HERO CAROUSEL
    ============================================================ */
 .hero-section {
+  max-width: var(--container);
+  margin: 0 auto;
   padding: 24px var(--gap);
   position: relative;
 }
@@ -377,7 +380,7 @@ ul { list-style: none; }
 .carousel {
   position: relative;
   border-radius: var(--radius-lg);
-  overflow: visible;
+  overflow: hidden; /* Viewport mask to crop non-active slides */
 }
 
 .carousel-track {
@@ -385,7 +388,6 @@ ul { list-style: none; }
   transition: transform 0.6s var(--ease);
   will-change: transform;
   border-radius: var(--radius-lg);
-  overflow: hidden;
 }
 
 .carousel-slide {
@@ -744,9 +746,9 @@ ul { list-style: none; }
 .promo-banner {
   background: linear-gradient(135deg, #1e3d2a 0%, #2d5a45 100%);
   border-radius: var(--radius-lg);
-  margin: 0 var(--gap);
+  max-width: calc(var(--container) - 2 * var(--gap));
+  margin: 0 auto 48px;
   padding: 48px 64px;
-  margin-bottom: 48px;
 }
 
 .promo-inner {
