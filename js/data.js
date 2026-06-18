@@ -348,7 +348,7 @@ function createBookCard(book, delay = 0) {
        aria-label="${book.title} by ${book.author}"
        style="animation-delay: ${delay}ms">
       <div class="book-cover-wrap">
-        <div class="book-cover" style="background: linear-gradient(160deg, ${book.coverColor} 0%, ${book.coverColor2} 100%);">
+        <div class="book-cover" style="background: linear-gradient(160deg, ${book.coverColor} 0%, ${book.coverColor2} 100%); --cover-glow: ${book.coverColor};">
           ${badge}
           <div class="book-cover-text">
             <div class="book-cover-title">${book.title}</div>
@@ -439,7 +439,7 @@ function updateBagUI() {
 
     html += `
       <div class="bag-item" data-id="${book.id}">
-        <div class="book-cover bag-item-cover" style="background: linear-gradient(160deg, ${book.coverColor} 0%, ${book.coverColor2} 100%); width:48px; height:68px; border-radius:4px; flex-shrink:0;"></div>
+        <div class="book-cover bag-item-cover" style="background: linear-gradient(160deg, ${book.coverColor} 0%, ${book.coverColor2} 100%); width:48px; height:68px; border-radius:4px; flex-shrink:0; --cover-glow: ${book.coverColor};"></div>
         <div class="bag-item-info">
           <div class="bag-item-title">${book.title}</div>
           <div class="bag-item-author">${book.author}</div>

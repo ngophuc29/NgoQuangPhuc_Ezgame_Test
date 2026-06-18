@@ -64,7 +64,7 @@ function renderBookDetail(book) {
     <!-- Left: Cover -->
     <div class="detail-cover-wrap">
       <div class="detail-cover" 
-           style="background: linear-gradient(160deg, ${book.coverColor} 0%, ${book.coverColor2} 100%);"
+           style="background: linear-gradient(160deg, ${book.coverColor} 0%, ${book.coverColor2} 100%); --cover-glow: ${book.coverColor};"
            role="img"
            aria-label="Cover of ${book.title}">
         <div class="detail-cover-text">
