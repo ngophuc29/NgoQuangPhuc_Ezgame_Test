@@ -22,7 +22,7 @@ function initBookDetail() {
     document.getElementById('book-detail-layout').innerHTML = `
       <div style="grid-column:1/-1; text-align:center; padding:80px 20px;">
         <p style="font-size:48px; margin-bottom:16px;">📖</p>
-        <h2 style="font-family:'Playfair Display',serif; font-size:24px; margin-bottom:12px;">Book not found</h2>
+        <h2 style="font-size:24px; margin-bottom:12px;">Book not found</h2>
         <a href="shop.html" style="color:var(--red-link); font-weight:500;">Browse all books →</a>
       </div>
     `;
@@ -122,16 +122,16 @@ function renderBookDetail(book) {
           <dd class="spec-value">${book.year}</dd>
         </div>
         <div class="spec-item">
-          <dt class="spec-label">ISBN</dt>
-          <dd class="spec-value">${book.isbn}</dd>
-        </div>
-        <div class="spec-item">
           <dt class="spec-label">Publisher</dt>
           <dd class="spec-value"><a href="#">${book.publisher}</a></dd>
         </div>
         <div class="spec-item">
           <dt class="spec-label">Language</dt>
           <dd class="spec-value">${book.language}</dd>
+        </div>
+        <div class="spec-item">
+          <dt class="spec-label">ISBN</dt>
+          <dd class="spec-value">${book.isbn}</dd>
         </div>
       </dl>
     </div>

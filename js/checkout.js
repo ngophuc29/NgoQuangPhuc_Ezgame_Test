@@ -457,7 +457,7 @@ function showOrderConfirmation() {
     layout.innerHTML = `
       <div style="grid-column:1/-1; text-align:center; padding:60px 20px; animation:slideUp 0.5s ease;">
         <div style="font-size:56px; margin-bottom:20px;">🎉</div>
-        <h2 style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700; margin-bottom:12px; color:var(--text);">
+        <h2 style="font-size:28px; font-weight:700; margin-bottom:12px; color:var(--text);">
           Order confirmed!
         </h2>
         <p style="font-size:15px; color:var(--text-muted); margin-bottom:8px; max-width:400px; margin-left:auto; margin-right:auto; line-height:1.6;">

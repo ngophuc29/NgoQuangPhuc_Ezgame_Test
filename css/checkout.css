@@ -9,7 +9,7 @@
 }
 
 .checkout-title {
-  font-family: 'Playfair Display', serif;
+  
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 800;
   color: var(--text);
@@ -41,7 +41,7 @@
   align-items: center;
   gap: 16px;
   background: #fff;
-  border: 1px solid var(--border);
+  border: 1px solid #cbc49f;
   border-radius: var(--radius-md);
   padding: 16px 20px;
   transition: box-shadow var(--dur-mid) var(--ease);
@@ -97,8 +97,6 @@
   padding: 0;
   font-family: inherit;
   transition: opacity var(--dur-fast);
-  text-decoration: underline;
-  text-underline-offset: 2px;
   display: block;
 }
 
@@ -111,7 +109,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid var(--border);
+  border: 1px solid #cbc49f;
   border-radius: 100px;
   background: transparent;
   padding: 0 12px;
@@ -177,7 +175,7 @@
 /* ── ORDER SUMMARY ── */
 .order-summary {
   background: #fff;
-  border: 1px solid var(--border);
+  border: 1px solid #cbc49f;
   border-radius: var(--radius-md);
   padding: 24px;
   position: sticky;
@@ -185,11 +183,11 @@
 }
 
 .summary-title {
-  font-family: 'Playfair Display', serif;
+  
   font-size: 18px;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .summary-rows {
@@ -297,7 +295,7 @@
 }
 
 .cart-empty-title {
-  font-family: 'Playfair Display', serif;
+  
   font-size: 26px;
   font-weight: 700;
   color: var(--text);
@@ -342,8 +340,8 @@
 }
 
 .login-modal {
-  background: var(--cream-light);
-  border-radius: 18px;
+  background: #f4eddd;
+  border-radius: 8px;
   width: 100%;
   max-width: 440px;
   padding: 36px 40px 32px;
@@ -371,7 +369,7 @@
   border-radius: 50%;
   background: var(--red-accent);
   color: #fff;
-  font-family: 'Playfair Display', serif;
+  
   font-weight: 700;
   font-size: 20px;
   display: flex;
@@ -381,10 +379,10 @@
 }
 
 .modal-close {
-  width: 32px;
-  height: 32px;
+  width: 50px;
+  height: 5px;
   border-radius: 50%;
-  background: rgba(0,0,0,0.07);
+  /* background: rgba(0,0,0,0.07); */
   border: none;
   display: flex;
   align-items: center;
@@ -394,18 +392,18 @@
   color: var(--text);
 }
 
-.modal-close:hover {
+/* .modal-close:hover {
   background: rgba(0,0,0,0.13);
-}
+} */
 
 .modal-close svg {
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
 }
 
 /* Modal Title */
 .modal-title {
-  font-family: 'Playfair Display', serif;
+  
   font-size: 26px;
   font-weight: 700;
   color: var(--text);
