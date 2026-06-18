@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
 </head>
 <body>
 
@@ -295,12 +296,51 @@
         <span>Total</span>
         <span id="bag-total-price">$0.00</span>
       </div>
-      <button class="btn-checkout">Checkout</button>
+      <button class="btn-checkout" onclick="window.location.href='checkout.html'">Checkout</button>
     </div>
   </aside>
   <div class="overlay" id="overlay" hidden></div>
 
+  <!-- ===== LOGIN MODAL ===== -->
+  <div class="modal-backdrop" id="login-modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+    <div class="login-modal" id="login-modal">
+      <div class="modal-header">
+        <div class="modal-logo-icon">P</div>
+        <button class="modal-close" id="modal-close" aria-label="Close sign in modal">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <h2 class="modal-title" id="modal-heading">Welcome back</h2>
+      <p class="modal-subtitle">Sign in to access your bag, orders and wishlist.</p>
+      <form class="login-form" id="login-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email</label>
+          <input type="email" id="login-email" class="form-input" placeholder="you@example.com" autocomplete="email" required />
+          <span class="form-error" id="email-error" hidden>Please enter a valid email address.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="login-password" class="form-input" placeholder="••••••••" autocomplete="current-password" required />
+            <button type="button" class="toggle-password" id="toggle-password" aria-label="Show password">
+              <svg viewBox="0 0 24 24" fill="none" class="eye-icon eye-show"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" class="eye-icon eye-hide" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94" stroke="currentColor" stroke-width="1.5"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <span class="form-error" id="password-error" hidden>Please enter your password.</span>
+        </div>
+        <div class="form-forgot"><a href="#" class="forgot-link">Forgot password?</a></div>
+        <button type="submit" class="btn-sign-in" id="btn-sign-in">
+          <span class="btn-text">Sign in</span>
+          <span class="btn-spinner" hidden><svg viewBox="0 0 24 24" fill="none" class="spinner-icon"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="31.4" stroke-dashoffset="10"/></svg></span>
+        </button>
+      </form>
+      <p class="modal-footer-text">New here? <a href="#" class="modal-link" id="modal-create-account">Create an account</a></p>
+    </div>
+  </div>
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/modal.js"></script>
 </body>
 </html>

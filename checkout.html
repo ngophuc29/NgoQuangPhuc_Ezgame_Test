@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="page-title">Book – Pages & Co.</title>
-  <meta name="description" id="page-meta-desc" content="Read more about this book at Pages & Co." />
+  <title>Your Bag – Pages & Co.</title>
+  <meta name="description" content="Review your shopping bag and checkout at Pages & Co." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -57,36 +57,72 @@
     <div class="search-results" id="search-results"></div>
   </div>
 
-  <main id="main-content" class="book-detail-page">
+  <main id="main-content" class="checkout-page">
     <div class="container">
 
       <!-- Breadcrumb -->
-      <nav class="breadcrumb" aria-label="Breadcrumb" id="book-breadcrumb">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">Home</a>
         <span class="breadcrumb-sep">/</span>
-        <a href="shop.html">Books</a>
-        <span class="breadcrumb-sep">/</span>
-        <span aria-current="page" id="breadcrumb-title">Loading…</span>
+        <span aria-current="page">Bag</span>
       </nav>
 
-      <!-- Book Detail -->
-      <div class="book-detail-layout" id="book-detail-layout">
-        <!-- Populated by JS -->
+      <h1 class="checkout-title">Your bag</h1>
+
+      <!-- Main Layout -->
+      <div class="checkout-layout" id="checkout-layout">
+
+        <!-- LEFT: Cart Items -->
+        <section class="cart-section" aria-label="Cart items">
+          <div class="cart-items" id="cart-items">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- RIGHT: Order Summary -->
+        <aside class="order-summary" aria-label="Order summary">
+          <h2 class="summary-title">Order summary</h2>
+
+          <div class="summary-rows" id="summary-rows">
+            <div class="summary-row">
+              <span class="summary-label" id="summary-label">Subtotal (0 items)</span>
+              <span class="summary-value summary-value--accent" id="summary-subtotal">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Shipping</span>
+              <span class="summary-value" id="summary-shipping">Free</span>
+            </div>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total-row">
+            <span class="summary-total-label">Total</span>
+            <span class="summary-total-value" id="summary-total">$0.00</span>
+          </div>
+
+          <button class="btn-checkout-page" id="checkout-btn">Checkout</button>
+
+          <p class="summary-note">You'll be asked to sign in to complete your order.</p>
+        </aside>
+
       </div>
 
-      <!-- You May Also Like -->
-      <section class="also-like-section" aria-labelledby="also-like-heading">
-        <h2 class="also-like-title" id="also-like-heading">You may also like</h2>
-        <div class="books-grid books-grid--4 also-like-grid" id="also-like-grid">
-          <!-- Populated by JS -->
+      <!-- Empty State -->
+      <div class="cart-empty" id="cart-empty" hidden>
+        <div class="cart-empty-inner">
+          <span class="cart-empty-icon">🛍️</span>
+          <h2 class="cart-empty-title">Your bag is empty</h2>
+          <p class="cart-empty-desc">Looks like you haven't added anything yet.</p>
+          <a href="shop.html" class="btn-gold">Browse books</a>
         </div>
-      </section>
+      </div>
 
     </div>
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="site-footer" id="newsletter">
+  <footer class="site-footer">
     <div class="footer-top">
       <div class="container footer-grid">
         <div class="footer-brand">
@@ -148,7 +184,7 @@
     </div>
   </footer>
 
-  <!-- BAG SIDEBAR -->
+  <!-- BAG SIDEBAR (kept for consistency, but hidden on checkout page) -->
   <aside class="bag-sidebar" id="bag-sidebar" aria-label="Shopping bag" hidden>
     <div class="bag-header">
       <h2>Your bag</h2>
@@ -160,11 +196,8 @@
       <p class="bag-empty">Your bag is empty.</p>
     </div>
     <div class="bag-footer" id="bag-footer" hidden>
-      <div class="bag-total">
-        <span>Total</span>
-        <span id="bag-total-price">$0.00</span>
-      </div>
-      <button class="btn-checkout" onclick="window.location.href='checkout.html'">Checkout</button>
+      <div class="bag-total"><span>Total</span><span id="bag-total-price">$0.00</span></div>
+      <button class="btn-checkout" onclick="window.location.href='checkout.html'">Go to checkout</button>
     </div>
   </aside>
   <div class="overlay" id="overlay" hidden></div>
@@ -178,37 +211,71 @@
           <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
       </div>
+
       <h2 class="modal-title" id="modal-heading">Welcome back</h2>
       <p class="modal-subtitle">Sign in to access your bag, orders and wishlist.</p>
+
       <form class="login-form" id="login-form" novalidate>
         <div class="form-group">
           <label class="form-label" for="login-email">Email</label>
-          <input type="email" id="login-email" class="form-input" placeholder="you@example.com" autocomplete="email" required />
+          <input
+            type="email"
+            id="login-email"
+            class="form-input"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          />
           <span class="form-error" id="email-error" hidden>Please enter a valid email address.</span>
         </div>
+
         <div class="form-group">
           <label class="form-label" for="login-password">Password</label>
           <div class="password-wrapper">
-            <input type="password" id="login-password" class="form-input" placeholder="••••••••" autocomplete="current-password" required />
+            <input
+              type="password"
+              id="login-password"
+              class="form-input"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            />
             <button type="button" class="toggle-password" id="toggle-password" aria-label="Show password">
-              <svg viewBox="0 0 24 24" fill="none" class="eye-icon eye-show"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
-              <svg viewBox="0 0 24 24" fill="none" class="eye-icon eye-hide" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94" stroke="currentColor" stroke-width="1.5"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="1.5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" class="eye-icon eye-show">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <svg viewBox="0 0 24 24" fill="none" class="eye-icon eye-hide" style="display:none;">
+                <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
             </button>
           </div>
           <span class="form-error" id="password-error" hidden>Please enter your password.</span>
         </div>
-        <div class="form-forgot"><a href="#" class="forgot-link">Forgot password?</a></div>
+
+        <div class="form-forgot">
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
         <button type="submit" class="btn-sign-in" id="btn-sign-in">
           <span class="btn-text">Sign in</span>
-          <span class="btn-spinner" hidden><svg viewBox="0 0 24 24" fill="none" class="spinner-icon"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="31.4" stroke-dashoffset="10"/></svg></span>
+          <span class="btn-spinner" hidden>
+            <svg viewBox="0 0 24 24" fill="none" class="spinner-icon">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="31.4" stroke-dashoffset="10"/>
+            </svg>
+          </span>
         </button>
       </form>
-      <p class="modal-footer-text">New here? <a href="#" class="modal-link" id="modal-create-account">Create an account</a></p>
+
+      <p class="modal-footer-text">
+        New here? <a href="#" class="modal-link" id="modal-create-account">Create an account</a>
+      </p>
     </div>
   </div>
 
   <script src="js/data.js"></script>
-  <script src="js/book-detail.js"></script>
-  <script src="js/modal.js"></script>
+  <script src="js/checkout.js"></script>
 </body>
 </html>
