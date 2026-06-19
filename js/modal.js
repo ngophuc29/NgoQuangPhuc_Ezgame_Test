@@ -104,6 +104,11 @@ function initStandaloneModal() {
       // Update Sign In button
       const navSignin = document.getElementById('btn-signin');
       if (navSignin) navSignin.textContent = 'My account';
+
+      // Global callback hook
+      if (typeof window.onLoginSuccess === 'function') {
+        window.onLoginSuccess();
+      }
     });
   }
 
@@ -118,6 +123,20 @@ function validateModal() {
   const emailError = document.getElementById('email-error');
   const pwdInput = document.getElementById('login-password');
   const pwdError = document.getElementById('password-error');
+  const nameInput = document.getElementById('register-name');
+
+  // Name check (register view only)
+  if (nameInput) {
+    if (!nameInput.value.trim()) {
+      nameInput.classList.add('input-error');
+      valid = false;
+    } else {
+      nameInput.classList.remove('input-error');
+    }
+    nameInput.addEventListener('input', () => {
+      nameInput.classList.remove('input-error');
+    }, { once: true });
+  }
 
   // Email check
   const emailVal = emailInput?.value.trim() || '';

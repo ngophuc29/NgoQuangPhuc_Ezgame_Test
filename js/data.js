@@ -626,7 +626,9 @@ function initSharedNav() {
   const signinBtn = document.getElementById('btn-signin');
   if (signinBtn) {
     signinBtn.addEventListener('click', () => {
-      showToast('Sign in coming soon!');
+      if (typeof window.openLoginModal !== 'function') {
+        showToast('Sign in coming soon!');
+      }
     });
   }
 

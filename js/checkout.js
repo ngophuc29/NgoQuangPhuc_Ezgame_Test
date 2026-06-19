@@ -9,7 +9,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   initSharedNav();
   initCheckoutPage();
-  initLoginModal();
 
   // On checkout page, clicking bag btn redirects to checkout
   const bagBtn = document.getElementById('bag-btn');
@@ -19,6 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // Handle Checkout button click -> opens login modal (loaded via modal.js)
+  const checkoutBtn = document.getElementById('checkout-btn');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      if (getBag().length > 0) {
+        if (typeof window.openLoginModal === 'function') {
+          window.openLoginModal();
+        }
+      }
+    });
+  }
+
+  // Hook into successful login to show order confirmation
+  window.onLoginSuccess = () => {
+    setTimeout(showOrderConfirmation, 500);
+  };
 });
 
 /* ============================================================
@@ -190,263 +206,6 @@ function renderSummary() {
 }
 
 /* ============================================================
-   LOGIN MODAL
-   ============================================================ */
-function initLoginModal() {
-  const backdrop = document.getElementById('login-modal-backdrop');
-  const modalClose = document.getElementById('modal-close');
-  const loginForm = document.getElementById('login-form');
-  const checkoutBtn = document.getElementById('checkout-btn');
-  const togglePwdBtn = document.getElementById('toggle-password');
-  const createAccountLink = document.getElementById('modal-create-account');
-  const signinBtn = document.getElementById('btn-signin');
-
-  if (!backdrop) return;
-
-  function openModal() {
-    backdrop.hidden = false;
-    document.body.style.overflow = 'hidden';
-    // Focus email input
-    setTimeout(() => {
-      document.getElementById('login-email')?.focus();
-    }, 100);
-  }
-
-  function closeModal() {
-    backdrop.hidden = true;
-    document.body.style.overflow = '';
-    resetForm();
-  }
-
-  // Open modal triggers
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', () => {
-      if (getBag().length > 0) openModal();
-    });
-  }
-
-  if (signinBtn) {
-    signinBtn.addEventListener('click', openModal);
-  }
-
-  // Close triggers
-  if (modalClose) modalClose.addEventListener('click', closeModal);
-
-  // Close on backdrop click
-  backdrop.addEventListener('click', (e) => {
-    if (e.target === backdrop) closeModal();
-  });
-
-  // Close on Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !backdrop.hidden) closeModal();
-  });
-
-  // Toggle password visibility
-  if (togglePwdBtn) {
-    togglePwdBtn.addEventListener('click', () => {
-      const pwdInput = document.getElementById('login-password');
-      const eyeShow = togglePwdBtn.querySelector('.eye-show');
-      const eyeHide = togglePwdBtn.querySelector('.eye-hide');
-
-      if (pwdInput.type === 'password') {
-        pwdInput.type = 'text';
-        eyeShow.style.display = 'none';
-        eyeHide.style.display = 'block';
-        togglePwdBtn.setAttribute('aria-label', 'Hide password');
-      } else {
-        pwdInput.type = 'password';
-        eyeShow.style.display = 'block';
-        eyeHide.style.display = 'none';
-        togglePwdBtn.setAttribute('aria-label', 'Show password');
-      }
-    });
-  }
-
-  // Create account link — switch modal to register view
-  if (createAccountLink) {
-    createAccountLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      switchToRegister();
-    });
-  }
-
-  // Form submit
-  if (loginForm) {
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!validateLoginForm()) return;
-
-      const submitBtn = document.getElementById('btn-sign-in');
-      const btnText = submitBtn.querySelector('.btn-text');
-      const btnSpinner = submitBtn.querySelector('.btn-spinner');
-
-      // Loading state
-      submitBtn.disabled = true;
-      btnText.textContent = 'Signing in…';
-      if (btnSpinner) btnSpinner.hidden = false;
-
-      // Simulate auth delay
-      await new Promise(r => setTimeout(r, 1800));
-
-      // Simulate success
-      submitBtn.disabled = false;
-      btnText.textContent = 'Sign in';
-      if (btnSpinner) btnSpinner.hidden = true;
-
-      closeModal();
-      showToast('Welcome back! ✨');
-
-      // Update nav button
-      if (signinBtn) {
-        signinBtn.textContent = 'My account';
-      }
-
-      // On checkout page: proceed to simulated checkout
-      if (window.location.pathname.includes('checkout')) {
-        setTimeout(() => {
-          showOrderConfirmation();
-        }, 500);
-      }
-    });
-  }
-}
-
-function validateLoginForm() {
-  let valid = true;
-
-  const emailInput = document.getElementById('login-email');
-  const emailError = document.getElementById('email-error');
-  const pwdInput = document.getElementById('login-password');
-  const pwdError = document.getElementById('password-error');
-
-  // Email
-  const emailVal = emailInput?.value.trim() || '';
-  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
-  if (!emailOk) {
-    emailInput?.classList.add('input-error');
-    if (emailError) emailError.hidden = false;
-    valid = false;
-  } else {
-    emailInput?.classList.remove('input-error');
-    if (emailError) emailError.hidden = true;
-  }
-
-  // Password
-  const pwdVal = pwdInput?.value || '';
-  if (pwdVal.length < 1) {
-    pwdInput?.classList.add('input-error');
-    if (pwdError) pwdError.hidden = false;
-    valid = false;
-  } else {
-    pwdInput?.classList.remove('input-error');
-    if (pwdError) pwdError.hidden = true;
-  }
-
-  // Clear errors on input
-  emailInput?.addEventListener('input', () => {
-    emailInput.classList.remove('input-error');
-    if (emailError) emailError.hidden = true;
-  }, { once: true });
-
-  pwdInput?.addEventListener('input', () => {
-    pwdInput.classList.remove('input-error');
-    if (pwdError) pwdError.hidden = true;
-  }, { once: true });
-
-  return valid;
-}
-
-function resetForm() {
-  const form = document.getElementById('login-form');
-  if (form) {
-    form.reset();
-    form.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
-    form.querySelectorAll('.form-error').forEach(el => el.hidden = true);
-  }
-  // Reset to sign in view if was on register
-  const modal = document.getElementById('login-modal');
-  if (modal?.dataset.view === 'register') {
-    switchToSignIn();
-  }
-}
-
-function switchToRegister() {
-  const modal = document.getElementById('login-modal');
-  if (!modal) return;
-
-  modal.dataset.view = 'register';
-
-  const title = modal.querySelector('.modal-title');
-  const subtitle = modal.querySelector('.modal-subtitle');
-  const form = document.getElementById('login-form');
-  const footerText = modal.querySelector('.modal-footer-text');
-
-  if (title) title.textContent = 'Create an account';
-  if (subtitle) subtitle.textContent = 'Join Pages & Co. and start your reading journey.';
-  if (footerText) footerText.innerHTML = 'Already have an account? <a href="#" class="modal-link" id="modal-signin-link">Sign in</a>';
-
-  // Add name field
-  if (form) {
-    const firstGroup = form.querySelector('.form-group');
-    if (firstGroup && !document.getElementById('register-name')) {
-      const nameGroup = document.createElement('div');
-      nameGroup.className = 'form-group';
-      nameGroup.id = 'name-group';
-      nameGroup.innerHTML = `
-        <label class="form-label" for="register-name">Full Name</label>
-        <input type="text" id="register-name" class="form-input" placeholder="Your full name" autocomplete="name" required />
-      `;
-      form.insertBefore(nameGroup, firstGroup);
-    }
-
-    const submitBtn = form.querySelector('.btn-sign-in');
-    if (submitBtn) {
-      submitBtn.querySelector('.btn-text').textContent = 'Create account';
-    }
-  }
-
-  // Bind switch back
-  setTimeout(() => {
-    const signinLink = document.getElementById('modal-signin-link');
-    if (signinLink) {
-      signinLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        switchToSignIn();
-      });
-    }
-  }, 0);
-}
-
-function switchToSignIn() {
-  const modal = document.getElementById('login-modal');
-  if (!modal) return;
-
-  modal.dataset.view = 'signin';
-
-  const title = modal.querySelector('.modal-title');
-  const subtitle = modal.querySelector('.modal-subtitle');
-  const footerText = modal.querySelector('.modal-footer-text');
-
-  if (title) title.textContent = 'Welcome back';
-  if (subtitle) subtitle.textContent = 'Sign in to access your bag, orders and wishlist.';
-  if (footerText) {
-    footerText.innerHTML = 'New here? <a href="#" class="modal-link" id="modal-create-account">Create an account</a>';
-    document.getElementById('modal-create-account')?.addEventListener('click', (e) => {
-      e.preventDefault();
-      switchToRegister();
-    });
-  }
-
-  // Remove name field
-  document.getElementById('name-group')?.remove();
-  document.getElementById('register-name')?.closest('.form-group')?.remove();
-
-  const submitBtn = document.getElementById('login-form')?.querySelector('.btn-sign-in');
-  if (submitBtn) submitBtn.querySelector('.btn-text').textContent = 'Sign in';
-}
-
-/* ============================================================
    ORDER CONFIRMATION (simulated)
    ============================================================ */
 function showOrderConfirmation() {
@@ -480,15 +239,3 @@ function showOrderConfirmation() {
     updateBagUI();
   }
 }
-
-/* ============================================================
-   GLOBAL: Export openLoginModal so other pages can use it
-   ============================================================ */
-window.openLoginModal = function() {
-  const backdrop = document.getElementById('login-modal-backdrop');
-  if (backdrop) {
-    backdrop.hidden = false;
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => document.getElementById('login-email')?.focus(), 100);
-  }
-};

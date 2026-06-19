@@ -37,8 +37,8 @@ function initCarousel() {
   }
 
   function resetAuto() {
-    clearInterval(autoTimer);
-    autoTimer = setInterval(() => goTo(current + 1), 5000);
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(() => goTo(current + 1), 5000);
   }
 
   prevBtn?.addEventListener('click', () => goTo(current - 1));
@@ -49,14 +49,16 @@ function initCarousel() {
   });
 
   // Touch/swipe support
-  let touchStartX = 0;
+  let touchStartX = null;
   const carousel = document.getElementById('hero-carousel');
   carousel?.addEventListener('touchstart', e => {
     touchStartX = e.touches[0].clientX;
   }, { passive: true });
 
   carousel?.addEventListener('touchend', e => {
+    if (touchStartX === null) return;
     const dx = e.changedTouches[0].clientX - touchStartX;
+    touchStartX = null; // reset
     if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
   }, { passive: true });
 
