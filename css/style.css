@@ -717,6 +717,7 @@ ul { list-style: none; }
   font-size: 12px;
   color: var(--text-muted);
   margin-bottom: 6px;
+  font-style: italic;
 }
 
 .book-pricing {
@@ -857,7 +858,7 @@ ul { list-style: none; }
   font-weight: 500;
   padding: 12px 22px;
   border-radius: 100px;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid #c4861a;
   cursor: pointer;
   transition: all var(--dur-fast);
 }
@@ -1295,6 +1296,7 @@ ul { list-style: none; }
 .detail-cover-author {
   font-size: 12px;
   color: rgba(255,255,255,0.7);
+  font-style: italic;
 }
 
 .detail-info { }
@@ -1360,9 +1362,10 @@ ul { list-style: none; }
 }
 
 .detail-price-original {
-  font-size: 18px;
-  color: var(--text-light);
+  font-size: 15px;
+  color: #000;
   text-decoration: line-through;
+  
 }
 
 .detail-description {

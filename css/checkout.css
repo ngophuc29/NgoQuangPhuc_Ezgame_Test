@@ -150,6 +150,7 @@
   font-weight: 600;
   color: var(--text);
   user-select: none;
+  margin-top: 2px;
 }
 
 /* Item price */
